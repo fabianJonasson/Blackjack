@@ -11,7 +11,7 @@ cards = [
     {"value": "J", "color": "diamonds", "points": 10},
     {"value": "Q", "color": "diamonds", "points": 10},
     {"value": "K", "color": "diamonds", "points": 10},
-    {"value": "A", "color": "diamonds", "points": 10, "pointsAlt": 1},
+    {"value": "A", "color": "diamonds", "points": 11, "pointsAlt": 1},
     {"value": 2, "color": "hearts", "points": 2},
     {"value": 3, "color": "hearts", "points": 3},
     {"value": 4, "color": "hearts", "points": 4},
@@ -24,7 +24,7 @@ cards = [
     {"value": "J", "color": "hearts", "points": 10},
     {"value": "Q", "color": "hearts", "points": 10},
     {"value": "K", "color": "hearts", "points": 10},
-    {"value": "A", "color": "hearts", "points": 10, "pointsAlt": 1},
+    {"value": "A", "color": "hearts", "points": 11, "pointsAlt": 1},
     {"value": 2, "color": "clubs", "points": 2},
     {"value": 3, "color": "clubs", "points": 3},
     {"value": 4, "color": "clubs", "points": 4},
@@ -37,7 +37,7 @@ cards = [
     {"value": "J", "color": "clubs", "points": 10},
     {"value": "Q", "color": "clubs", "points": 10},
     {"value": "K", "color": "clubs", "points": 10},
-    {"value": "A", "color": "clubs", "points": 10, "pointsAlt": 1},
+    {"value": "A", "color": "clubs", "points": 11, "pointsAlt": 1},
     {"value": 2, "color": "spades", "points": 2},
     {"value": 3, "color": "spades", "points": 3},
     {"value": 4, "color": "spades", "points": 4},
@@ -50,15 +50,28 @@ cards = [
     {"value": "J", "color": "spades", "points": 10},
     {"value": "Q", "color": "spades", "points": 10},
     {"value": "K", "color": "spades", "points": 10},
-    {"value": "A", "color": "spades", "points": 10, "pointsAlt": 1}
+    {"value": "A", "color": "spades", "points": 11, "pointsAlt": 1}
 ];
 
 let playerCards = [];
 let dealerCards = [];
 
+playerCards[0] = getRandomCard();
+playerCards[1] = getRandomCard();
+dealerCards[0] = getRandomCard();
+
+let choice = prompt(`Your cards: 
+${playerCards[0].value} of ${playerCards[0].color}
+${playerCards[1].value} of ${playerCards[1].color}
+
+Dealer cards:
+${dealerCards[0].value} of ${dealerCards[0].color}
+
+Hit or Stand? (h/s)`)
+
 function getRandomCard() {
     let randNum = Math.floor(Math.random() * cards.length)
-    let randomCard = card[randNum];
-    cards.splice(randNum);
+    let randomCard = cards[randNum];
+    cards.splice(randNum, 1);
     return randomCard;
 };
