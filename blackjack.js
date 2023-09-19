@@ -60,6 +60,9 @@ playerCards[0] = getRandomCard();
 playerCards[1] = getRandomCard();
 dealerCards[0] = getRandomCard();
 
+//let points = getPoints();
+//console.log(`${points[0]} ${points[1]}`);
+
 let choice = prompt(`Your cards: 
 ${playerCards[0].value} of ${playerCards[0].color}
 ${playerCards[1].value} of ${playerCards[1].color}
@@ -67,11 +70,38 @@ ${playerCards[1].value} of ${playerCards[1].color}
 Dealer cards:
 ${dealerCards[0].value} of ${dealerCards[0].color}
 
-Hit or Stand? (h/s)`)
+Hit or Stand? (h/s)`);
+
+
+
 
 function getRandomCard() {
     let randNum = Math.floor(Math.random() * cards.length)
     let randomCard = cards[randNum];
     cards.splice(randNum, 1);
     return randomCard;
+};
+
+function getPoints() {
+    let playerPoints = 0;
+    let dealerPoints = 0;
+    playerCards.forEach(card => {
+        if(card.value !== "A") {
+            playerPoints += card.points;
+        } else if(playerPoints < 12) {
+            playerPoints += card.points;
+        } else {
+            playerPoints += card.pointsAlt;
+        };
+    });
+    dealerCards.forEach(card => {
+        if(card.value !== "A") {
+            dealerPoints += card.points;
+        } else if(dealerPoints < 12) {
+            dealerPoints += card.points;
+        } else {
+            dealerPoints += card.pointsAlt;
+        };
+    });
+    return [playerPoints, dealerPoints];
 };
