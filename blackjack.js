@@ -72,6 +72,7 @@ ${dealerCards[0].value} of ${dealerCards[0].color}
 
 Hit or Stand? (h/s)`);
 
+playerAction(choice);
 
 
 
@@ -88,7 +89,7 @@ function getPoints() {
     playerCards.forEach(card => {
         if(card.value !== "A") {
             playerPoints += card.points;
-        } else if(playerPoints < 12) {
+        } else if(playerPoints < 11) {
             playerPoints += card.points;
         } else {
             playerPoints += card.pointsAlt;
@@ -97,11 +98,34 @@ function getPoints() {
     dealerCards.forEach(card => {
         if(card.value !== "A") {
             dealerPoints += card.points;
-        } else if(dealerPoints < 12) {
+        } else if(dealerPoints < 11) {
             dealerPoints += card.points;
         } else {
             dealerPoints += card.pointsAlt;
         };
     });
     return [playerPoints, dealerPoints];
+};
+
+function playerAction(choice) {
+
+    switch (choice) {
+        case "s":
+            while (getPoints()[1] < 17) {
+                let x = 1
+                dealerCards[x] = getRandomCard();
+                console.log(points[1]);
+                x++;
+            };
+
+            if(points[1] > 21 || points[1] < points[0]) alert("You won!");
+            else if(points[0] == points[1]) alert("Draw!");
+            else alert("You lost!");
+            break;
+
+        case "h":
+            
+
+        default:
+    };
 };
