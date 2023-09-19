@@ -62,6 +62,7 @@ dealerCards[0] = getRandomCard();
 
 //let points = getPoints();
 //console.log(`${points[0]} ${points[1]}`);
+console.log(getPoints()[1]);
 
 let choice = prompt(`Your cards: 
 ${playerCards[0].value} of ${playerCards[0].color}
@@ -71,6 +72,7 @@ Dealer cards:
 ${dealerCards[0].value} of ${dealerCards[0].color}
 
 Hit or Stand? (h/s)`);
+
 
 playerAction(choice);
 
@@ -108,15 +110,18 @@ function getPoints() {
 };
 
 function playerAction(choice) {
-
     switch (choice) {
         case "s":
+            let x = 1;
             while (getPoints()[1] < 17) {
-                let x = 1
                 dealerCards[x] = getRandomCard();
-                console.log(points[1]);
+                getPoints()[1];
+                console.log(getPoints()[1]);
+                console.log(dealerCards);
                 x++;
             };
+
+            let points = getPoints();
 
             if(points[1] > 21 || points[1] < points[0]) alert("You won!");
             else if(points[0] == points[1]) alert("Draw!");
@@ -124,7 +129,7 @@ function playerAction(choice) {
             break;
 
         case "h":
-            
+
 
         default:
     };
