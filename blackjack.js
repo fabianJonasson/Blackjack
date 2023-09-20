@@ -56,9 +56,9 @@ cards = [
 let playerCards = [];
 let dealerCards = [];
 
-playerCards[0] = getRandomCard();
-playerCards[1] = getRandomCard();
-dealerCards[0] = getRandomCard();
+playerCards.push(getRandomCard());
+playerCards.push(getRandomCard());
+dealerCards.push(getRandomCard());
 
 let choice = prompt(`Your cards: 
 ${playerCards[0].value} of ${playerCards[0].color}
@@ -108,10 +108,8 @@ function getPoints() {
 function playerAction(choice) {
     switch (choice) {
         case "s":
-            let x = 1;
             while (getPoints()[1] < 17) {
-                dealerCards[x] = getRandomCard();
-                x++;
+                dealerCards.push(getRandomCard());
             };
 
             let points = getPoints();
