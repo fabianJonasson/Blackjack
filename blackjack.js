@@ -86,7 +86,7 @@ function getRandomCard() {
 function printPlayer() {
     let toPrint = [];
     playerCards.forEach(card => {
-        toPrint.push(`${card.value} of ${card.color} `);
+        toPrint.push(` ${card.value} of ${card.color} `);
     });
     return toPrint;
 }
@@ -94,10 +94,10 @@ function printPlayer() {
 function printDealer() {
     let toPrint = [];
     if(stand === false) {
-        toPrint.push(`${dealerCards[0].value} of ${dealerCards[0].color}, HIDDEN CARD`);
+        toPrint.push(` ${dealerCards[0].value} of ${dealerCards[0].color}, HIDDEN CARD`);
     } else {
         dealerCards.forEach(card => {
-        toPrint.push(`${card.value} of ${card.color} `);
+        toPrint.push(` ${card.value} of ${card.color}`);
         }); 
     }
     return toPrint;
@@ -137,20 +137,52 @@ function playerAction(choice) {
 
             let points = getPoints();
 
-            if(points[1] > 21 || points[1] < points[0]) alert("You won!");
-            else if(points[0] == points[1]) alert("Draw!");
-            else alert("You lost!");
+            if(points[1] > 21 || points[1] < points[0]) {
+                alert(`You won!
+Your cards: ${printPlayer()}
+Your points: ${getPoints()[0]}
+
+Dealer cards: ${printDealer()}
+Dealer points: ${getPoints()[1]}`);
+
+            } else if(points[0] == points[1]) {
+                alert(`Draw!
+Your cards: ${printPlayer()}
+
+Dealer cards: ${printDealer()}`);
+
+            } else {
+                alert(`You lost!
+Your cards: ${printPlayer()}
+Your points: ${getPoints()[0]}
+
+Dealer cards: ${printDealer()}
+Dealer points: ${getPoints()[1]}`);
+            }    
             break;
 
         case "h":
             playerCards.push(getRandomCard());
 
             if(getPoints()[0] > 21) {
-                alert("You lost!");
+                alert(`You lost!
+Your cards: ${printPlayer()}
+Your points: ${getPoints()[0]}`);
             } else {
+                choice = prompt(`Your cards: 
+${printPlayer()}
                 
+Dealer cards:
+${printDealer()}
+                
+Hit or Stand? (h/s)`);
+
+                playerAction(choice);
             }
+            break;
 
         default:
+            alert("Wrong input! Please input h or s next time! ;)");
+            break;
     };
 };
