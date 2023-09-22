@@ -56,15 +56,18 @@ cards = [
 let playerCards = [];
 let dealerCards = [];
 
+let stand = false;
+
 playerCards.push(getRandomCard());
 playerCards.push(getRandomCard());
+dealerCards.push(getRandomCard());
 dealerCards.push(getRandomCard());
 
 let choice = prompt(`Your cards: 
 ${printPlayer()}
 
 Dealer cards:
-${dealerCards[0].value} of ${dealerCards[0].color}
+${printDealer()}
 
 Hit or Stand? (h/s)`);
 
@@ -85,6 +88,18 @@ function printPlayer() {
     playerCards.forEach(card => {
         toPrint.push(`${card.value} of ${card.color} `);
     });
+    return toPrint;
+}
+
+function printDealer() {
+    let toPrint = [];
+    if(stand === false) {
+        toPrint.push(`${dealerCards[0].value} of ${dealerCards[0].color}, HIDDEN CARD`);
+    } else {
+        dealerCards.forEach(card => {
+        toPrint.push(`${card.value} of ${card.color} `);
+        }); 
+    }
     return toPrint;
 }
 
@@ -115,6 +130,7 @@ function getPoints() {
 function playerAction(choice) {
     switch (choice) {
         case "s":
+            stand = true;
             while (getPoints()[1] < 17) {
                 dealerCards.push(getRandomCard());
             };
