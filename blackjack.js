@@ -61,8 +61,7 @@ playerCards.push(getRandomCard());
 dealerCards.push(getRandomCard());
 
 let choice = prompt(`Your cards: 
-${playerCards[0].value} of ${playerCards[0].color}
-${playerCards[1].value} of ${playerCards[1].color}
+${printPlayer()}
 
 Dealer cards:
 ${dealerCards[0].value} of ${dealerCards[0].color}
@@ -80,6 +79,14 @@ function getRandomCard() {
     cards.splice(randNum, 1);
     return randomCard;
 };
+
+function printPlayer() {
+    let toPrint = [];
+    playerCards.forEach(card => {
+        toPrint.push(`${card.value} of ${card.color} `);
+    });
+    return toPrint;
+}
 
 function getPoints() {
     let playerPoints = 0;
@@ -120,7 +127,13 @@ function playerAction(choice) {
             break;
 
         case "h":
+            playerCards.push(getRandomCard());
 
+            if(getPoints()[0] > 21) {
+                alert("You lost!");
+            } else {
+                
+            }
 
         default:
     };
